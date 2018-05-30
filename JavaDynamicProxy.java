@@ -8,11 +8,11 @@ public class JavaDynamicProxy {
         Zack zack = new Zack();
 
         Developer zackProxy = (Developer) Proxy.newProxyInstance(zack.getClass().getClassLoader(),
-                zack.getClass().getInterfaces(), (p, method, par) -> {
+                zack.getClass().getInterfaces(), (proxy, method, agrs) -> {
                     if (method.getName().equals("code")) {
                         System.out.println("Proxy Zack coding！");
                     }
-                    return method.invoke(zack, par);
+                    return method.invoke(zack, agrs);
         });
         
         zackProxy.code();
